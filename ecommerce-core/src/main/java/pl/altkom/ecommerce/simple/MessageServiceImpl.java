@@ -6,12 +6,20 @@
 
 package pl.altkom.ecommerce.simple;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Student
  */
+@Service
 public class MessageServiceImpl implements MessageService {
     
+    @Autowired
+    //@Qualifier("superMailSenderImpl")
+    @Qualifier("sender")
     private MailSender sender;
     
     @Override

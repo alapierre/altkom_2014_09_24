@@ -17,17 +17,24 @@ import pl.altkom.ecommerce.core.Invoice;
  * @author Student
  */
 @Repository
-public class InvoiceDAOJpaImpl {
+public class InvoiceDAOJpaImpl implements InvoiceDAO {
     
     @PersistenceContext
-    @Qualifier("entityManagerFactory")
     private EntityManager em;
     
-    public Invoice load() {
-        
-       
-        
-        return null;
+    @Override
+    public Invoice load(int id) {
+       return  em.find(Invoice.class, id);
+    }
+    
+    @Override
+    public void saveOrUpdate(Invoice invoice) {
+        em.persist(invoice);
+    }
+    
+    @Override
+    public void delete(Invoice invoice) {
+        em.remove(invoice);
     }
     
 }

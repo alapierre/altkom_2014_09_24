@@ -6,6 +6,8 @@
 
 package pl.altkom.ecommerce.simple;
 
+import java.util.Objects;
+
 /**
  *
  * @author Student
@@ -44,6 +46,38 @@ public class MailMessage {
     public String toString() {
         return "MailMessage{" + "address=" + address + ", content=" + content + ", subject=" + subject + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.address);
+        hash = 13 * hash + Objects.hashCode(this.content);
+        hash = 13 * hash + Objects.hashCode(this.subject);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MailMessage other = (MailMessage) obj;
+        if (!Objects.equals(this.address, other.address)) {
+            return false;
+        }
+        if (!Objects.equals(this.content, other.content)) {
+            return false;
+        }
+        if (!Objects.equals(this.subject, other.subject)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     
     

@@ -6,20 +6,32 @@
 
 package pl.altkom.ecommerce.simple;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Student
  */
+@Service("sender")
 public class MailSenderImpl implements MailSender {
     
+    @Value("${smtp.host}")
     private String smtpHost;
+    
+    @Value("${smtp.user}")
     private String smtpUser;
+    
+    @Value("${smtp.pass}")
     private String smtpPass;
     
     @Override
     public void sendMail(MailMessage message) {
         
         System.out.println("sysyłąm wiadomość " + message);
+        
+        System.out.println("host: " + smtpHost);
+        
     } 
 
     public String getSmtpHost() {

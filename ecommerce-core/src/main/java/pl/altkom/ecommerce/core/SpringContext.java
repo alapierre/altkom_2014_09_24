@@ -8,6 +8,8 @@ package pl.altkom.ecommerce.core;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import pl.altkom.ecommerce.core.dao.InvoiceDAO;
+import pl.altkom.ecommerce.core.dao.InvoiceDAOJpaImpl;
 
 /**
  *
@@ -18,7 +20,14 @@ public class SpringContext {
     public static void main(String[] args) {
         
         ApplicationContext ctx = new ClassPathXmlApplicationContext("ecommerce-core.xml");
+        InvoiceDAO dao = ctx.getBean(InvoiceDAO.class);
         
+        Invoice invoice = new Invoice();
+        dao.saveOrUpdate(invoice);
+        
+        Invoice tmp = dao.load(1);
+        
+        System.out.println(tmp);
         
         
     }
