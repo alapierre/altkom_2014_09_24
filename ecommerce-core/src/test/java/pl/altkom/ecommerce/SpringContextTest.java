@@ -74,11 +74,8 @@ public class SpringContextTest extends AbstractTransactionalJUnit4SpringContextT
         System.out.println("pages " + res.getTotalPages());
         
         
-        res.forEach(new Consumer<Invoice>() {
-            @Override
-            public void accept(Invoice t) {
-                System.out.println(t);
-            }
+        res.forEach((Invoice t) -> {
+            System.out.println(t);
         });
         
     }
