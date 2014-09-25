@@ -15,7 +15,9 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import pl.altkom.ecommerce.core.Invoice;
 import pl.altkom.ecommerce.core.InvoiceType;
+import pl.altkom.ecommerce.core.Product;
 import pl.altkom.ecommerce.core.dao.springdata.InvoiceDAO;
+import pl.altkom.ecommerce.core.dao.springdata.ProductDAO;
 
 
 /**
@@ -28,6 +30,10 @@ public class SpringContextTest extends AbstractTransactionalJUnit4SpringContextT
     
     @Autowired
     private InvoiceDAO invoiceDAO;
+    
+    @Autowired
+    private ProductDAO productDAO;
+    
     
     
     @Before
@@ -62,8 +68,32 @@ public class SpringContextTest extends AbstractTransactionalJUnit4SpringContextT
         
         System.out.println(tmp);
         
-        assert tmp.getId() == 10;
+//        assert tmp.getId() == 10;
     }
+    
+    
+        @Test
+    public void testContext2() {
+        
+        Product product = new Product();
+        
+        productDAO.save(product);
+        
+        System.out.println(product.getId());
+        
+        assert product.getId() != 0;
+        
+        Product tmp  = productDAO.findByNameAndBarcode("Piwo", "2345678901234");
+        
+        System.out.println(tmp);
+        
+       // assert tmp.getId() == 10;
+    }
+    
+    
+    
+    
+    
     
     @Test
     public void ttt() {
