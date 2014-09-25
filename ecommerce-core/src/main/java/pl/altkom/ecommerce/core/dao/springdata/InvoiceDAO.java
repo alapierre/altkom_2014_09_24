@@ -7,6 +7,8 @@
 package pl.altkom.ecommerce.core.dao.springdata;
 
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -26,5 +28,8 @@ public interface InvoiceDAO extends CrudRepository<Invoice, Integer>{
     
     @Query("select i from Invoice i where nettoValue=:netto")
     public List<Invoice> findByQuery(@Param("netto")double netto);
+    
+    @Query("select i from Invoice i where nettoValue >= :netto")
+    public Page<Invoice> findByAmount(@Param("netto")double netto, Pageable pageable);
     
 }

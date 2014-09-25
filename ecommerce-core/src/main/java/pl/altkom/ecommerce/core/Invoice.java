@@ -89,7 +89,9 @@ public class Invoice extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Invoice{" + "invoiceType=" + invoiceType + ", number=" + number + ", client=" + client + ", items=" + items + ", nettoValue=" + nettoValue + ", grosValue=" + grosValue + '}';
+        return "Invoice{" + "invoiceType=" + invoiceType + ", number=" + number + ", client=" + client + ", nettoValue=" + nettoValue + ", grosValue=" + grosValue + '}';
     }
+
+    
     
 }

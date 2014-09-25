@@ -6,9 +6,13 @@
 
 package pl.altkom.ecommerce;
 
+import java.util.function.Consumer;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
@@ -50,7 +54,36 @@ public class SpringContextTest extends AbstractTransactionalJUnit4SpringContextT
         
         invoiceDAO.findByQuery(1);
         
+        
         //System.out.println(i);
+    }
+    
+    @Test
+    public void testInsertSomeData() {
+        
+        for(int i = 0 ; i<100; i++) {
+            Invoice invoice = new Invoice();
+            invoice.setNettoValue(100);
+        
+            invoiceDAO.save(invoice);
+        }
+        
+        
+        
+    }
+    
+    @Test
+    public void pageTest() {
+        
+        Page<Invoice> res = invoiceDAO.findByAmount(0, new PageRequest(0, 10, Sort.Direction.ASC, "id"));
+       
+        System.out.println("pages " + res.getTotalPages());
+        
+        
+        res.forEach((Invoice t) -> {
+            System.out.println(t);
+        });
+        
     }
     
     @Test
