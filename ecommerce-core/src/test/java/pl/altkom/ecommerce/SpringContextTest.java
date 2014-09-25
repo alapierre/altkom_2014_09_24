@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import pl.altkom.ecommerce.core.Invoice;
-import pl.altkom.ecommerce.core.dao.InvoiceDAO;
+import pl.altkom.ecommerce.core.InvoiceType;
+import pl.altkom.ecommerce.core.dao.springdata.InvoiceDAO;
 
 
 /**
@@ -21,6 +23,7 @@ import pl.altkom.ecommerce.core.dao.InvoiceDAO;
  * @author Student
  */
 @ContextConfiguration("/ecommerce-core.xml")
+@TransactionConfiguration(defaultRollback = false)
 public class SpringContextTest extends AbstractTransactionalJUnit4SpringContextTests {
     
     @Autowired
@@ -33,15 +36,33 @@ public class SpringContextTest extends AbstractTransactionalJUnit4SpringContextT
     }
     
     @Test
+    public void testFind() {
+        
+        //Invoice i = invoiceDAO.findByNumberAndInvoiceType("1234", InvoiceType.FK);
+        
+        //Invoice i = invoiceDAO.findByClientName("Adrian");
+        
+        invoiceDAO.findByQuery(1);
+        
+        //System.out.println(i);
+    }
+    
+    @Test
     public void testContext() {
         
         Invoice invoice = new Invoice();
         
-        invoiceDAO.saveOrUpdate(invoice);
+        invoiceDAO.save(invoice);
         
         System.out.println(invoice.getId());
         
         assert invoice.getId() != 0;
+        
+        Invoice tmp  = invoiceDAO.findOne(10);
+        
+        System.out.println(tmp);
+        
+        assert tmp.getId() == 10;
     }
     
     @Test
