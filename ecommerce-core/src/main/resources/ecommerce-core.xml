@@ -17,7 +17,7 @@
 ">
 
     <context:annotation-config />
-    <context:component-scan base-package="pl.altkom.ecommerce.jpa.dao"/>
+    <context:component-scan base-package="pl.altkom.ecommerce.core.dao"/>
     
     <context:property-placeholder location="system.properties"/>
     
