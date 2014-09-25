@@ -6,10 +6,13 @@
 
 package pl.altkom.ecommerce.core;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author Student
  */
-public class Product {
+@Entity
+public class Product extends BaseEntity{
     
 }

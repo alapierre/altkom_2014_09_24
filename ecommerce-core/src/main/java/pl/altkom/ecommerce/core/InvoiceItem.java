@@ -6,11 +6,14 @@
 
 package pl.altkom.ecommerce.core;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author Student
  */
-public class InvoiceItem {
+@Entity
+public class InvoiceItem extends BaseEntity{
     
     private String name;
     private Product product;
