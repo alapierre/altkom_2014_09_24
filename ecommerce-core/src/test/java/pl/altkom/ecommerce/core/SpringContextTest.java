@@ -4,18 +4,19 @@
  * and open the template in the editor.
  */
 
-package pl.altkom.ecommerce;
+package pl.altkom.ecommerce.core;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import pl.altkom.ecommerce.core.Invoice;
 import pl.altkom.ecommerce.core.InvoiceType;
 import pl.altkom.ecommerce.core.dao.springdata.InvoiceDAO;
+import pl.altkom.ecommerce.core.dao.springdata.PersonDAO;
 
 
 /**
@@ -29,6 +30,8 @@ public class SpringContextTest extends AbstractTransactionalJUnit4SpringContextT
     @Autowired
     private InvoiceDAO invoiceDAO;
     
+    @Autowired
+    private PersonDAO personDAO;
     
     @Before
     public void init() {
@@ -46,6 +49,26 @@ public class SpringContextTest extends AbstractTransactionalJUnit4SpringContextT
         
         //System.out.println(i);
     }
+    
+    @Test
+    public void testPersonFind() {
+        
+        personDAO.save(new Person("0", "Artur", "Test"));
+        for (int i = 1; i < 1000; i++)
+            personDAO.save(new Person(""+i, "Artur"+i, "Test"));
+        
+        
+        Person p = personDAO.findByFirstName("Artur");
+        
+        System.out.println("Person ID: "+p.getId());
+        
+        //Invoice i = invoiceDAO.findByClientName("Adrian");
+        
+        //invoiceDAO.findByQuery(1);
+        
+        //System.out.println(i);
+    }
+    
     
     @Test
     public void testContext() {
