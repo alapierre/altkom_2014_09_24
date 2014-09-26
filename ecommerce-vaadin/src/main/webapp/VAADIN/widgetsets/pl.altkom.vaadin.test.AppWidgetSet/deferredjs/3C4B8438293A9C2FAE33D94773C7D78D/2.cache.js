@@ -1,0 +1,1 @@
+$wnd.pl_altkom_vaadin_test_AppWidgetSet.runAsyncCallback2('Q8(759,1,Wjd);_.vc=function R_b(){fRb((!$Qb&&($Qb=new kRb),$Qb),this.b.e)};xed(Vh)(2);\n//# sourceURL=pl.altkom.vaadin.test.AppWidgetSet-2.js\n')

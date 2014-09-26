@@ -6,7 +6,9 @@
 
 package pl.altkom.ecommerce.core;
 
+import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -16,10 +18,12 @@ import javax.persistence.Entity;
 @Entity
 public class Product extends BaseEntity{
     
-    
     private String name;
     
     private String barcode;
+    
+    @Column(precision = 8, scale = 2)
+    private BigDecimal price;
 
     public String getName() {
         return name;
@@ -35,6 +39,22 @@ public class Product extends BaseEntity{
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+    
+    public double getPriceAsDouble() {
+        return price.doubleValue();
+    }
+
+    public void setPriceAsDouble(double price) {
+        this.price = new BigDecimal(price);
     }
 
     @Override
